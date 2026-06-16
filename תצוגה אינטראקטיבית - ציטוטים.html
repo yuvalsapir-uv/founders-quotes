@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ציפיות מייסדים בחברות הזנק - ציטוטים אינטראקטיביים</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Heebo', 'Segoe UI', Arial, sans-serif;
+  background: #EEF2F7;
+  direction: rtl;
+  min-height: 100vh;
+  color: #1A3A5C;
+}
+.header {
+  background: #1A3A5C;
+  color: white;
+  text-align: center;
+  padding: 24px 20px 18px;
+}
+.header .tag { font-size: 12px; letter-spacing: 1px; opacity: 0.65; text-transform: uppercase; margin-bottom: 8px; }
+.header h1 { font-size: 24px; font-weight: 600; margin-bottom: 6px; }
+.header p { font-size: 14px; opacity: 0.8; }
+
+/* Featured panel */
+#featured {
+  display: none;
+  background: white;
+  border-bottom: 3px solid #2E75B6;
+  padding: 28px 36px 24px;
+  animation: slideDown 0.3s ease;
+}
+@keyframes slideDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+.feat-top { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+.feat-avatar {
+  width: 68px; height: 68px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 700; color: white;
+  flex-shrink: 0;
+}
+.feat-name { font-size: 22px; font-weight: 700; color: #1A3A5C; margin-bottom: 4px; }
+.feat-profile { font-size: 13px; color: #666; line-height: 1.6; }
+.feat-close {
+  margin-right: auto; background: none; border: 1px solid #ccc;
+  border-radius: 6px; padding: 6px 14px; font-size: 13px;
+  cursor: pointer; font-family: inherit; color: #555; flex-shrink: 0;
+}
+.feat-close:hover { background: #f5f5f5; }
+.feat-quotes { max-width: 860px; }
+.fq {
+  background: #F4F7FB;
+  border-right: 4px solid;
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px 10px;
+  margin-bottom: 10px;
+}
+.fq .qt { font-size: 16px; color: #1A3A5C; line-height: 1.75; margin-bottom: 6px; }
+.fq .tp { font-size: 12px; color: #888; }
+
+/* Controls */
+.controls {
+  display: flex; justify-content: center; align-items: center;
+  gap: 12px; padding: 18px 20px 14px;
+}
+.btn-main {
+  background: #2E75B6; color: white; border: none;
+  padding: 11px 30px; border-radius: 8px;
+  font-size: 15px; cursor: pointer; font-family: inherit;
+}
+.btn-main:hover { background: #1A5A94; }
+.btn-sec {
+  background: white; color: #555; border: 1px solid #ccc;
+  padding: 9px 20px; border-radius: 8px;
+  font-size: 14px; cursor: pointer; font-family: inherit;
+}
+.btn-sec:hover { background: #f5f5f5; }
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 14px;
+  padding: 0 20px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px 16px 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+  text-align: center;
+  user-select: none;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 22px rgba(0,0,0,0.1); }
+.card.selected { border-color: #2E75B6; box-shadow: 0 8px 22px rgba(46,117,182,0.22); }
+.card.highlight { animation: pulse 0.7s ease; }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.06); box-shadow: 0 14px 32px rgba(0,0,0,0.18); }
+  100% { transform: scale(1); }
+}
+.avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: white;
+  margin: 0 auto 10px;
+}
+.card-name { font-size: 17px; font-weight: 600; color: #1A3A5C; margin-bottom: 2px; }
+.card-meta { font-size: 11px; color: #999; margin-bottom: 12px; line-height: 1.5; }
+.quote-area { min-height: 68px; display: flex; align-items: center; justify-content: center; padding: 0 2px; }
+.qt-text {
+  font-size: 12.5px; color: #444; line-height: 1.65; font-style: italic;
+  transition: opacity 0.45s ease;
+}
+.qt-text.fade { opacity: 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">המרכז האקדמי רופין · עבודת סמינר איכותני · 2025</div>
+  <h1>ציפיות מייסדים בחברות הזנק</h1>
+  <p>14 יזמים ויזמיות על אורח חיים, לחץ ואיזון - לפני ואחרי מכירת החברה</p>
+</div>
+
+<div id="featured">
+  <div class="feat-top">
+    <div class="feat-avatar" id="fa"></div>
+    <div>
+      <div class="feat-name" id="fn"></div>
+      <div class="feat-profile" id="fp"></div>
+    </div>
+    <button class="feat-close" onclick="closeFeatured()">✕ סגור</button>
+  </div>
+  <div class="feat-quotes" id="fq"></div>
+</div>
+
+<div class="controls">
+  <button class="btn-main" onclick="showRandom()">✦ ציטוט אקראי</button>
+  <button class="btn-sec" id="pause-btn" onclick="togglePause()">⏸ השהה</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const founders = [
+  {
+    name: 'אליעד', age: 41, family: 'אב לילדים', role: 'Co-Founder, CEO',
+    duration: 'כ-3 שנים', since_sale: 'כשנה', color: '#C0392B',
+    quotes: [
+      { text: 'במהלך הצמיחה של המיזם, רכיב השינה הכי הרבה נפגע. השינה שלי נפגעה קשות.', topic: 'שינה - לפני מכירה' },
+      { text: 'עכשיו, אחרי המכירה, אני עושה יוגה כמעט כל בוקר.', topic: 'פעילות גופנית - אחרי מכירה' },
+      { text: 'באיזשהו שלב בצמיחת המיזם יצרתי לעצמי "יום אב" - כל יום רביעי הייתי יוצא מוקדם (וכמובן חוזר לעבוד מהמחשב בערב). זה היה משהו שהקפדתי עליו ולא זז.', topic: 'איזון עבודה-משפחה' },
+      { text: 'אני קורא רק פיקשן. אני לא קורא ספרי עסקים.', topic: 'שחרור ונטישת מחשבות' },
+      { text: 'היום, אחרי המכירה, אני לא שותה קפה אחרי 12:00 בצהריים.', topic: 'הרגלי בריאות - אחרי מכירה' },
+      { text: 'בשלב מסוים לפני המכירה, מה שעזר לי זה שעה ביום שאני עולה לאכול ארוחת ערב עם המשפחה.', topic: 'איזון עבודה-חיים - לפני מכירה' },
+    ]
+  },
+  {
+    name: 'אורן', age: 36, family: 'בזוגיות', role: 'Co-Founder, CEO',
+    duration: 'כ-8 שנים', since_sale: 'כחצי שנה', color: '#2471A3',
+    quotes: [
+      { text: 'בסוף לי לא הייתה מה שנקרא work-life balance. לי היה work-work balance.', topic: 'איזון עבודה-חיים' },
+      { text: 'מה שעזר לי בשלב מסוים זה הכלב. שנייה, לקחת את הכלב לטיול. זה עשה לי הכרח לצאת.', topic: 'ניתוק - כלי' },
+      { text: 'באופן פרואקטיבי אני לא עשיתי כלום. לא מדיטציה, לא ספורט ספציפי.', topic: 'ויסות מנטלי - היעדר כלים' },
+      { text: 'לא היה לי בעיות שינה. מעולם. ישנתי טוב לאורך הדרך וגם לקראת המכירה.', topic: 'שינה' },
+      { text: 'לא, אני לא עוסק בפעילות גופנית. אני צריך לשנות את זה.', topic: 'פעילות גופנית - היעדר' },
+    ]
+  },
+  {
+    name: 'אורית', age: 44, family: 'אם לילדים', role: 'Co-Founder, CEO',
+    duration: 'כ-5 שנים', since_sale: 'כ-7 שנים', color: '#A93226',
+    quotes: [
+      { text: 'אי אפשר לשים גבולות כשאת יזמת. גם אם יצאתי מוקדם לילדים, ברור שעבדתי כשהייתי איתם. זה היה 24/7.', topic: 'לפני מכירה' },
+      { text: 'כשהתחלתי להיות שכירה - אי אפשר להשוות. הייתי הרבה יותר עם הילדים.', topic: 'אחרי מכירה' },
+      { text: 'בסטארטאפ לא עשיתי כלום. ואז בקורונה לאחר המכירה התחלתי לעשות ספורט כמעט כל יום.', topic: 'ספורט - שינוי' },
+      { text: 'עכשיו שחזרתי ליזמות, אני משתדלת לעשות פעמיים בשבוע - אבל זה קשה.', topic: 'ספורט - כיום' },
+      { text: 'אם אתה מרגיש בנוח מדי - סימן שמשהו לא בסדר.', topic: 'גישה יזמית' },
+      { text: 'אני לא מבינה איך אנשים עושים את זה לבד. הקו-פאונדרית שלי - זה היה בלתי אפשרי בלעדיה.', topic: 'שותפות' },
+      { text: 'בעלי תומך בצורה מלאה. כלום לא היה יכול לקרות בגדול בלעדיו.', topic: 'תמיכה' },
+    ]
+  },
+  {
+    name: 'חן', age: 55, family: 'אב לילדים', role: 'Co-Founder, CEO',
+    duration: 'כ-12 שנים', since_sale: 'כ-13 שנים', color: '#1E8449',
+    quotes: [
+      { text: 'כשאתה יזם, אתה זה. זה totality. זה לא עבודה, זה חיים.', topic: 'זהות יזמית - טוטאליות' },
+      { text: 'כל הזמן הרגשתי אשמה. אם אני עם המשפחה, אני לא עובד. אם אני עובד, אני לא עם המשפחה.', topic: 'איזון עבודה-משפחה' },
+      { text: 'הלחץ בחברה הרוכשת זה לחץ קורפורטיבי. הלחץ בסטארטאפ זה לחץ אקזיסטנציאלי. זה שונה לגמרי.', topic: 'ויסות מנטלי - סוגי לחץ' },
+      { text: 'לא היה שום ציר שהצלחתי לשמור בו בריא.', topic: 'אורח חיים - לפני מכירה' },
+      { text: 'על הפנים, לא ישנתי, לא הצלחתי להירדם, הייתי קם מיליון פעמים בלילה.', topic: 'שינה - לפני מכירה' },
+      { text: 'אתה חי בחוסר ודאות מטורף.', topic: 'אי-ודאות יזמית' },
+      { text: 'השותפים שלך זה בעצם קבוצת תמיכה אמיתית אחד לשני.', topic: 'מעגלי תמיכה' },
+      { text: 'אחרי הרכישה היה לי יותר זמן. התחלתי להתאמן שוב.', topic: 'פעילות גופנית - אחרי מכירה' },
+    ]
+  },
+  {
+    name: 'שאולי', age: 53, family: 'אב לילדים', role: 'CEO',
+    duration: 'כ-5 שנים', since_sale: 'כשנה וחצי', color: '#7D3C98',
+    quotes: [
+      { text: 'האמונה בקב"ה זה מה שמשאיר אותי שפוי. בלי זה אני לא יודע איך אנשים עושים את זה.', topic: 'ויסות מנטלי - אמונה' },
+      { text: 'אשתי שמרה עלי. היא הייתה העוגן שלי. השיחה איתה מרגיעה, מאוד מאווררת.', topic: 'מעגלי תמיכה - בת זוג' },
+      { text: 'בשבת אני מנותק. שבת זה כלל, לא אפשרות.', topic: 'ניתוק קבוע' },
+      { text: 'תפילה בשבילי זה מדיטציה. אני מתפלל כל בוקר.', topic: 'ויסות מנטלי - תפילה' },
+      { text: 'קם מוקדם. חמש, חמש וחצי. מהלחץ. הגוף לא ישן.', topic: 'שינה - לפני מכירה' },
+      { text: 'היתרון שאני דתי - אז אני חייב להתנתק. זה מדיטציה נפלאה.', topic: 'ניתוק - שבת ודת' },
+      { text: 'הולכים יחד הרבה. הרגלים של שישי שבת עם המשפחה.', topic: 'איזון עבודה-משפחה' },
+    ]
+  },
+  {
+    name: 'בר', age: 56, family: 'אב לילדים', role: 'Co-Founder, Co-CEO',
+    duration: 'כ-18 שנים', since_sale: 'כ-9 שנים', color: '#B9770E',
+    quotes: [
+      { text: 'בשלב מסוים בחרתי לא לצמוח. בחרתי להגביל את גדילת החברה כדי לא לפגוע במשפחה.', topic: 'איזון עבודה-משפחה - בחירה' },
+      { text: 'אם אני לא עושה ספורט, אני מרגיש את זה. זה משפיע על הכל.', topic: 'פעילות גופנית - חשיבות' },
+      { text: 'תמיד עשיתי ספורט. בסטארטאפ גם שחיתי וגם שיחקתי כדורסל קבוע עם חברים פעם בשבוע.', topic: 'פעילות גופנית - שגרה' },
+      { text: 'מבחינת למידה, קראתי ביוגרפיות של מנהלים בעיקר.', topic: 'למידה' },
+    ]
+  },
+  {
+    name: 'עמיר', age: 66, family: 'אב לילדים', role: 'Co-Founder, CEO',
+    duration: 'כ-7 שנים', since_sale: 'כ-10 שנים', color: '#117A65',
+    quotes: [
+      { text: 'אני רץ חמישה קילומטר כל בוקר. כל יום. לא זז מזה.', topic: 'פעילות גופנית - שגרה' },
+      { text: 'אחרי הריצה אני הולך לאמא שלי. כל בוקר. זה הרוטינה.', topic: 'שגרת בוקר' },
+      { text: 'אני ישן שתיים וחצי שלוש שעות. שינה זה בזבוז זמן.', topic: 'שינה' },
+      { text: 'לפני כל ישיבה חשובה, ובכלל, אני מתכונן ואוסף המון מידע ונתונים. בצורה מאוד יסודית.', topic: 'ויסות מנטלי - הכנה' },
+      { text: 'תמיד אני אומר את זה לחברה - כל מה שאפשר לדעת לפני, תדעו לפני. יש לנו מספיק אי-ודאות.', topic: 'ויסות מנטלי - צמצום אי-ודאות' },
+    ]
+  },
+  {
+    name: 'אדר', age: 38, family: 'אב לילדים', role: 'Co-Founder, CEO',
+    duration: 'כ-3 שנים', since_sale: 'כ-5 שנים', color: '#A04000',
+    quotes: [
+      { text: 'חמישי בערב יש לי כמה שעות של חברים - לא משנה מה.', topic: 'חיי חברה' },
+      { text: 'היום, אחרי המכירה, אני שוחה, חדר כושר קצת, ואני גם מטפס עם אח שלי.', topic: 'ספורט' },
+      { text: 'אני חי לפי היעדים. כשהולך טוב אני ישן טוב. כשלא הולך טוב אני לא ישן.', topic: 'שינה - קשר לביצועים' },
+      { text: 'אני לא מפספס ערב עם המשפחה אף פעם. ארוחת ערב, מקלחות וסיפור.', topic: 'איזון עבודה-משפחה' },
+      { text: 'לפני המכירה, הסבלנות שלי מאוד ירדה ואני מביא את הסטרס שלי מדברים אחרים הביתה.', topic: 'שחיקה - לפני מכירה' },
+    ]
+  },
+  {
+    name: 'אוריה', age: 20, family: 'רווק', role: 'Co-Founder, CTO',
+    duration: 'כשנה', since_sale: 'כחצי שנה', color: '#1F618D',
+    quotes: [
+      { text: 'הייתי הולך למכון כושר. לא הייתי מבריז בשביל לעבוד, היה לי חשוב לשמור על ספורט בסדר יום.', topic: 'ספורט - לפני מכירה' },
+      { text: 'מבחינת אוכל, לא אכלתי אוכל של בית איזה שנה. הזמנתי הרבה מאוד.', topic: 'תזונה - לפני מכירה' },
+      { text: 'עכשיו אחרי הרכישה אני ישן שבע שבע וחצי שעות. לפני זה הלכתי לישון בשתיים-שלוש בלילה בממוצע.', topic: 'שינה - לפני ואחרי' },
+      { text: 'אחרי הרכישה אני קצת מרשה לעצמי יותר לבלות.', topic: 'איזון - אחרי מכירה' },
+    ]
+  },
+  {
+    name: 'יונתן', age: 54, family: 'אב לילדים', role: 'Co-Founder, CEO',
+    duration: 'כ-4 שנים', since_sale: 'כ-10 שנים', color: '#4A7C25',
+    quotes: [
+      { text: 'השיטה שלי הייתה לקרוא ספר לפני השינה, אחרי זה אני מצליח להירדם. כשמחשבות נודדות, הספר לוקח אותך החוצה מהמשימות.', topic: 'שינה - קריאה' },
+      { text: 'בדרך כלל לא הצלחתי לישון מספיק. הייתי ישן שש וחצי שעות בחוסר כל הזמן.', topic: 'שינה - לפני מכירה' },
+      { text: 'זה היה גורם לזה שחודשיים-שלושה בשנה הייתי חולה.', topic: 'שינה - השפעה על בריאות' },
+      { text: 'גם היינו יוצאים לריצות בחו"ל - טיולי ריצה עם החברה, שלוש מאות חמישים, ארבע מאות קילומטר. תמיד כולם היו צוחקים עלי שאני עובד, הייתי היחיד שעובד מהטיולי ריצה.', topic: 'איזון - לפני מכירה' },
+      { text: 'בכל אירוע משמעותי של הילדים הייתי משתדל לסדר את הלוז לפני, הייתי מקפיד להגיע להכל.', topic: 'משפחה' },
+      { text: 'אחרי המכירה אני משתדל פחות לעבוד בסוף שבוע. מה שפעם היה לי מאוד קל זה כבר לא.', topic: 'איזון - אחרי מכירה' },
+    ]
+  },
+  {
+    name: 'שחר', age: 35, family: 'רווק', role: 'Co-Founder, CTO',
+    duration: 'כ-3 שנים', since_sale: 'כשנה וחצי', color: '#C0392B',
+    quotes: [
+      { text: 'יש שני מצבים של לחץ בסטארטאפ. יש תחושה שהעולם סוגר עליך, וזו תחושה שאתה מרגיש כל הזמן. ויש רגעים שבהם אתה נמצא בשדה קרב - לחץ נקודתי.', topic: 'ויסות מנטלי - סוגי לחץ' },
+      { text: 'בחצי שנה האחרונה לפני המכירה כבר ממש לא הצלחתי להתאמן - בגלל הלחץ.', topic: 'ספורט - לקראת מכירה' },
+      { text: 'לא הייתי עובד בין שישי בערב עד שלוש בצהריים בשבת. אם לא הייתי חייב.', topic: 'איזון' },
+      { text: 'אני לא חושב שזה מטומטם לא לישון. זה נראה טוב, אבל זה מטומטם.', topic: 'שינה - גישה' },
+      { text: 'משהו שמאוד עזר לי - אמרתי לעצמי שאני לא חייב להצליח. אני בעצם בא בשביל ללמוד.', topic: 'ויסות מנטלי - ניהול ציפיות' },
+      { text: 'אמא שלי הכינה לי כל שבוע את כל האוכל כל תקופת הסטארטאפ. אכלתי טוב, לא הזמנתי וולט כמעט אף פעם.', topic: 'תזונה' },
+      { text: 'היום חזרתי להתאמן חמש פעמים בשבוע - כוח, ריצה, גמישות. ואני גם מנגן על פסנתר.', topic: 'ספורט ותחביבים - אחרי מכירה' },
+      { text: 'קיבלתי מצדי החלטה שאני מוותר על כל Work Life Balance במהלך התקופה. לא ניסיתי בכלל לכוון לזה. הבנתי שאני צריך לעשות מאמץ בלתי סביר כדי לקבל תוצאות בלתי רגילות.', topic: 'לפני מכירה - גישה' },
+      { text: 'סך הכל, יזמות זו חוויה מאוד בודדה.', topic: 'בדידות יזמית' },
+    ]
+  },
+  {
+    name: 'עדן', age: 24, family: 'רווק', role: 'Co-Founder, CEO',
+    duration: 'כשנה', since_sale: 'כחצי שנה', color: '#5D6D7E',
+    quotes: [
+      { text: 'היה חשוב לי להמשיך להתאמן - סקווש או חדר כושר, איזה שלוש-ארבע פעמים בשבוע.', topic: 'ספורט' },
+      { text: 'תקופות שהיו יותר עמוסות - ממש ניסיתי לתכנן שאוכל להתאמן. אם אני יודע שהיום מסתיים מאוחר, אז אני אלך בבוקר.', topic: 'ספורט - תכנון' },
+      { text: 'ממש חיכיתי ליום כיפור כדי להתנתק ושאורי (השותף) לא ישלח לי הודעות.', topic: 'ויסות מנטלי - ניתוק' },
+      { text: 'שינה זה גם משהו שממש הקפדתי עליו. היה לי ממש חשוב.', topic: 'שינה - ערך' },
+      { text: 'השינוי הכי גדול לאחר המכירה היה להיות שכיר, שהיה לא קל, ולראות איך אני לא עובד בסופ״שים.', topic: 'איזון - אחרי מכירה' },
+    ]
+  },
+  {
+    name: 'נדב', age: 41, family: 'נשוי', role: 'Co-Founder, CTO',
+    duration: 'כ-5 שנים', since_sale: 'כ-6 שנים', color: '#6E2F1A',
+    quotes: [
+      { text: 'אני מאוד טוב בלהפריד דברים שיש לי שליטה עליהם מדברים שאין לי שליטה עליהם. דברים שאין לי שליטה - אני פשוט מנטלית עוזב אותם.', topic: 'ויסות מנטלי' },
+      { text: 'לא היה לי ריצות אף פעם בחיים. בתקופה האחרונה, לאחר המכירה התחלתי לרוץ שעתיים בשבת בבוקר. גיליתי שזה כלי נהדר לניקוי ראש.', topic: 'ספורט - שינוי' },
+      { text: 'לאחר המכירה, התחלתי לשנות מאוד את הרגלי האכילה - כמעט ללא סוכרים ופחמימות.', topic: 'תזונה' },
+      { text: 'שינה זה חלק מאוד חלש אצלי. אני לא ישן מספיק. צובר חובות שינה.', topic: 'שינה' },
+      { text: 'לפעמים קם מוקדם מדי ולא מצליח לחזור לישון. לדעתי זה מלחץ.', topic: 'שינה - לחץ' },
+      { text: 'כל יזם מבין את האמת המאוד כואבת שלהיות יזם זה תפקיד מאוד בודד.', topic: 'בדידות יזמית' },
+    ]
+  },
+  {
+    name: 'עומר', age: 38, family: 'נשוי', role: 'Co-Founder, CEO',
+    duration: 'כ-8 שנים', since_sale: 'כ-3 שנים', color: '#D35400',
+    quotes: [
+      { text: 'מה שבאמת שינה את הכל זה הילדים. המכירה לא מכירה, חברה חדשה לא חברה חדשה - הכל נראה קטן לעומת זה.', topic: 'משפחה' },
+      { text: 'יש לי כמה סממנים: לעשות יותר מדי דברים במקביל, שעות מאוד מאוחרות, ניתוק רגשי. ואז אני אומר אוקיי - הגעתי לדגל, עוצר. ברגע שאני מזהה, זה כבר נעלם.', topic: 'ויסות מנטלי' },
+      { text: 'לפני המכירה - הכל בלי הפסקה. עבודה עבודה עבודה. הגבול הברור לא היה קיים.', topic: 'לפני מכירה' },
+      { text: 'פעם לא הייתי מעז לקחת יומיים-שלושה חופש. היום יכול לכבות את הטלפון. השנה עשינו חודש בתאילנד.', topic: 'איזון - אחרי מכירה' },
+      { text: 'המנכ"ל זה התפקיד הכי בודד. היום, אני לא מנסה לשדר שהכל בסדר. אני יותר פתוח.', topic: 'בדידות יזמית' },
+    ]
+  },
+];
+
+let paused = false;
+const qIdx = {};
+
+function buildGrid() {
+  const grid = document.getElementById('grid');
+  founders.forEach((f, fi) => {
+    qIdx[fi] = 0;
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.id = 'card-' + fi;
+    card.onclick = () => showFeatured(fi);
+    card.innerHTML = `
+      <div class="avatar" style="background:${f.color}">${f.name[0]}</div>
+      <div class="card-name">${f.name}</div>
+      <div class="card-meta">${f.role}<br>גיל ${f.age} · ${f.family}</div>
+      <div class="quote-area">
+        <div class="qt-text" id="qt-${fi}">"${f.quotes[0].text}"</div>
+      </div>
+    `;
+    grid.appendChild(card);
+
+    setInterval(() => {
+      if (paused) return;
+      const el = document.getElementById('qt-' + fi);
+      if (!el) return;
+      el.classList.add('fade');
+      setTimeout(() => {
+        qIdx[fi] = (qIdx[fi] + 1) % f.quotes.length;
+        el.textContent = '“' + f.quotes[qIdx[fi]].text + '”';
+        el.classList.remove('fade');
+      }, 450);
+    }, 4500 + fi * 500);
+  });
+}
+
+function showFeatured(fi) {
+  const f = founders[fi];
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('card-' + fi).classList.add('selected');
+
+  document.getElementById('fa').style.background = f.color;
+  document.getElementById('fa').textContent = f.name[0];
+  document.getElementById('fn').textContent = f.name;
+  document.getElementById('fp').innerHTML =
+    `<strong>${f.role}</strong> &nbsp;·&nbsp; גיל ${f.age} &nbsp;·&nbsp; ${f.family}<br>משך מיזם: ${f.duration} &nbsp;·&nbsp; מאז מכירה: ${f.since_sale}`;
+
+  const fq = document.getElementById('fq');
+  fq.innerHTML = '';
+  f.quotes.forEach(q => {
+    const d = document.createElement('div');
+    d.className = 'fq';
+    d.style.borderColor = f.color;
+    d.innerHTML = `<div class="qt">&#8220;${q.text}&#8221;</div><div class="tp">${q.topic}</div>`;
+    fq.appendChild(d);
+  });
+
+  const panel = document.getElementById('featured');
+  panel.style.display = 'block';
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeFeatured() {
+  document.getElementById('featured').style.display = 'none';
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+}
+
+function showRandom() {
+  const fi = Math.floor(Math.random() * founders.length);
+  const card = document.getElementById('card-' + fi);
+  card.classList.add('highlight');
+  setTimeout(() => card.classList.remove('highlight'), 700);
+  showFeatured(fi);
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById('pause-btn').textContent = paused ? '▶ הפעל' : '⏸ השהה';
+}
+
+buildGrid();
+</script>
+  <div style="text-align:center; padding: 28px 16px 18px; font-size: 13px; color: #888; border-top: 1px solid #e0e0e0; margin-top: 24px;">
+    * כל שמות היזמים הם בדויים כדי לשמור על פרטיותם. תודה רבה לכל היזמים שנרתמו ולקחו חלק במחקר.
+    <br><br>אלין פרנס ויובל ספיר &nbsp;|&nbsp; מנחה: ד"ר קרן וינברג
+  </div>
+</body>
+</html>
